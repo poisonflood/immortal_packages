@@ -8,12 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bash
-PKG_VERSION:=5.2.32
+# ERROR: info field 'version' has invalid value: package version is invalid
+PKG_VERSION:=5.3_rc1
+PKG_VERSION_REAL:=5.3-rc1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION_REAL).tar.gz
 PKG_SOURCE_URL:=@GNU/bash
-PKG_HASH:=d3ef80d2b67d8cbbe4d3265c63a72c46f9b278ead6e0e06d61801b58f23f50b5
+PKG_HASH:=f9452bc0244d96f4ddcc1269441c98c6202cb294b74dd67e4204c8e28a1d1481
 
 PKG_MAINTAINER:=Marcel Denia <naoir@gmx.net>
 PKG_LICENSE:=GPL-3.0-or-later
@@ -22,6 +24,8 @@ PKG_CPE_ID:=cpe:/a:gnu:bash
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
+# the real build dir
+PKG_BUILD_DIR:=$(BUILD_DIR)/bash-$(PKG_VERSION_REAL)
 
 include $(INCLUDE_DIR)/package.mk
 

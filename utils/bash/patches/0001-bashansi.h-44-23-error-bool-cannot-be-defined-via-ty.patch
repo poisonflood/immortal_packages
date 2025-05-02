@@ -1,0 +1,35 @@
+From 5d634e7c7c23210d12f4b6eba2b0d84b4bc644d6 Mon Sep 17 00:00:00 2001
+From: fun1355 <1174433+fun1355@users.noreply.github.com>
+Date: Sat, 3 May 2025 01:20:27 +0900
+Subject: [PATCH] bashansi.h:44:23: error: 'bool' cannot be defined via
+ 'typedef'
+
+---
+ bashansi.h | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/bashansi.h b/bashansi.h
+index 16772d2..904155c 100644
+--- a/bashansi.h
++++ b/bashansi.h
+@@ -40,10 +40,13 @@
+ #  if defined (HAVE_STDBOOL_H)
+ #    include <stdbool.h>
+ #  else
+-#    undef bool
+-typedef unsigned char bool;
+-#    define true 1
+-#    define false 0
++#    if !defined(__cplusplus) && (!defined(__STDC_VERSION__) || __STDC_VERSION__ < 202311L)
++#      ifndef __bool_true_false_are_defined
++          typedef unsigned char bool;
++#         define false 0
++#         define true 1
++#      endif
++#    endif
+ #  endif
+ #endif
+ 
+-- 
+2.49.0
+
