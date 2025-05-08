@@ -7,12 +7,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sendmail
-PKG_VERSION:=8.16.1
+PKG_VERSION:=8.18.1.10
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME).$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.sendmail.org/pub/sendmail
-PKG_HASH:=7886d5dc4b436b86175f32b5b9c7305c80787749847e2909bf99123ecc4e64ba
+PKG_HASH:=cecedf5e9595ef4b869ffa8546a587e7eb35da575c1d3f70e9aa1297e7566cdc
 PKG_MAINTAINER:=Val Kulkov <val.kulkov@gmail.com>
 
 PKG_LICENSE:=Sendmail

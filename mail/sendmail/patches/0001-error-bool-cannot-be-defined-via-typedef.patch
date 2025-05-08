@@ -1,0 +1,35 @@
+From 77d08d7b8cdb2f1a7fe3871eb6a81cf9fc915602 Mon Sep 17 00:00:00 2001
+From: fun1355 <1174433+fun1355@users.noreply.github.com>
+Date: Sat, 3 May 2025 23:45:44 +0900
+Subject: [PATCH] error: 'bool' cannot be defined via 'typedef'
+
+---
+ include/libmilter/mfapi.h | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/include/libmilter/mfapi.h b/include/libmilter/mfapi.h
+index 8209882..8686067 100644
+--- a/include/libmilter/mfapi.h
++++ b/include/libmilter/mfapi.h
+@@ -92,13 +92,13 @@ typedef int	sfsistat;
+ #if SM_CONF_STDBOOL_H
+ # include <stdbool.h>
+ #else /* SM_CONF_STDBOOL_H */
+-# ifndef __cplusplus
++# if !defined(__cplusplus) && (!defined(__STDC_VERSION__) || __STDC_VERSION__ < 202311L)
+ #  ifndef bool
+ #   ifndef __bool_true_false_are_defined
+-typedef int	bool;
+-#    define false	0
+-#    define true	1
+-#    define __bool_true_false_are_defined	1
++      typedef int	bool;
++#     define false	0
++#     define true	1
++#     define __bool_true_false_are_defined	1
+ #   endif /* ! __bool_true_false_are_defined */
+ #  endif /* bool */
+ # endif /* ! __cplusplus */
+-- 
+2.49.0
+
